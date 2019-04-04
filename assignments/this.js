@@ -20,19 +20,50 @@ globalisation();
 // Principle 2
 
 // code example for Implicit Binding
-const object1 = {
-  name: 'sachin',
-  object1.whatbinding(binding)
+const obj1 = {
+  name:"Sachin" ,
+  englishpremier: function()
   {
-  console.log(`${this.name} has done ${binding}`);
+    console.log (`${this.name} love the english premier league`)
   }
 }
-object1.whatbinding('implicit')
+obj1.englishpremier()
 
 // Principle 3
 
 // code example for New Binding
+function CreateHuman(humanone){
+  this.name = humanone.name
+  this.gender = humanone.gender
+  this.garden = humanone.garden
+}
+CreateHuman.prototype.hello = function() {
+  return(`${this.name} from ${this.garden} says hello`)
+}
 
+const human = new CreateHuman(
+  {name: 'Adam',
+  gender: 'M',
+  garden: 'Eden'}
+)
+console.log(human.hello())
 // Principle 4
 
 // code example for Explicit Binding
+function Inventhuman(attributes){
+  this.namej = attributes.namej
+  this.genderj = attributes.genderj
+  this.gardenj = attributes.gardenj
+}
+
+function Married(name1, name2)
+{
+  Inventhuman.apply(this,name1)
+  this.name2 = name2
+}
+Married.prototype = Object.create(Inventhuman.prototype)
+Married.prototype.whosmarried = function()
+{`${this.name} is from ${this.garden} and is married to ${this.name2}`}
+
+const marriage = new Married ({namej:'Adam',genderj:'M', gardenj:'Eden'}, 'Eve')
+console.log(marriage.whosmarried())
